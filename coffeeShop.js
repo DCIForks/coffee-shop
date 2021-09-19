@@ -77,11 +77,15 @@ class CoffeeShop {
   ///// UTILITY METHODS //// UTILITY METHODS //// UTILITY METHODS /////
 
   show() {
-    let [command, ...params] = Object.values(arguments)
+    let [command, ...parameters] = Object.values(arguments)
+
     if (this[command]) {
-      const result = this[command].apply(this, params)
-      params = params ? params.map(p => `"${p}"`).join(", ") : ""
-      console.log(`${command}(${params}):`, result)
+      // This class has a method with the name <command>. Call it...
+      const result = this[command].apply(this, parameters)
+      // ... and log the command and its result
+      parameters = parameters.map(param => `"${param}"`).join(", ")
+      console.log(`${command}(${parameters}):`, result)
+
     } else {
       console.log(`Sorry. This coffee shop doesn't do ${command}`)
     }
@@ -97,15 +101,21 @@ class CoffeeShop {
     this.show("foodOnly")
     this.show("drinksOnly")
     this.show("cheapestItem")
+
     // Order four items, one of which is not on the menu
     this.show("addOrder", "Toast", "Sandwich", "Bread", "Coffee")
     // Calculate the cost
     this.show("dueAmount")
-    // Prepare each of the "four" items
+
+    // Prepare each of the items in the order
+    // (including those sent to the constructor)
+    while(this.orders.length) {
+      this.show("fulfillOrder")
+    }
+    // Show that there are no orders left
     this.show("fulfillOrder")
-    this.show("fulfillOrder")
-    this.show("fulfillOrder")
-    this.show("fulfillOrder")
+
+    // Test a non-existant method
     this.show("payBill")
   }
 }
