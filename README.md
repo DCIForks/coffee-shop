@@ -1,7 +1,7 @@
 # Solution to CoffeeShop exercise
 
-* Uses `require` for internal files: CoffeeShop.js and menu.json
-* Includes test() method for demonstrating the other methods
+* Uses `require` for external files: CoffeeShop.js and menu.json
+* Includes a test() method for demonstrating the other methods
 
 The instructions require methods to _return_ a result, but the
 examples imply that the output is shown with `console.log()`. To
